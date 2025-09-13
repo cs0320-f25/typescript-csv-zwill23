@@ -87,6 +87,33 @@
 
     To run the parser, npm run run.
 
+Copilot History:
+    “I’m working on a CSV parser in TypeScript that currently accepts a filename as input and converts rows into strings or objects. What are some missing features or edge cases that I should consider? What improvements would make it easier for other developers to use in different kinds of apps?”
+
+    Here are some missing features and edge cases to consider for your TypeScript CSV parser:
+
+    Missing Features & Edge Cases
+    Quoted Fields Handling:
+    Fields with commas, newlines, or quotes inside quotes (e.g., "Smith, John", "Line1\nLine2", "He said ""Hello""") must be parsed correctly.
+    Whitespace Preservation:
+    Spaces inside quoted fields should be preserved, not trimmed.
+    Header Row Support:
+    Optionally treat the first row as a header and map subsequent rows to objects using those headers.
+    Schema Validation:
+    Allow users to specify expected types or formats for columns and validate each row against this schema.
+    Error Handling:
+    Provide clear error messages for malformed rows, unexpected column counts, or invalid data.
+    Custom Delimiters:
+    Support delimiters other than commas (e.g., tabs, semicolons).
+    Line Ending Variations:
+    Handle both \n and \r\n line endings.
+    Empty Fields:
+    Correctly handle empty fields (e.g., ,,).
+    Unicode & Encoding:
+    Support UTF-8 and other encodings.
+
+
+
 #### Team members and contributions (include cs logins):
 
 #### Collaborators (cslogins of anyone you worked with on this project and/or generative AI): 
