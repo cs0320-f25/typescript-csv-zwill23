@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as readline from "readline";
+import { z } from "zod";
 
 /**
  * This is a JSDoc comment. Similar to JavaDoc, it documents a public-facing
@@ -34,4 +35,42 @@ export async function parseCSV(path: string): Promise<string[][]> {
     result.push(values)
   }
   return result
+}
+
+export async function parseCSVZod<T>(path: string, schema?: z.ZodType<T>): Promise<string[][] | T[]> {
+  
+  const fileStream = fs.createReadStream(path);
+  const rl = readline.createInterface({
+    input: fileStream,
+    crlfDelay: Infinity, 
+  });
+
+  const result: string[][] = []
+
+  for await (const line of rl) {
+    const values = line.split(",").map((v) => v.trim());
+    result.push(values);
+  }
+
+  // If no schema, then just return the aray of string arrays
+  if (!schema) return result;
+
+  // If schema is given, validate and transform
+  const transformed: T[] = [];
+  const errors: string[] = [];
+
+  result.forEach((row, idx) => {
+    const parsed = schema.safeParse(row);
+    if (parsed.success) {
+      transformed.push(parsed.data);
+    } else {
+      errors.push(`row ${idx}: ${parsed.error.message}`);
+    }
+  });
+
+  if (errors.length) {
+    throw new Error(`CSV schema validation failed`);
+  }
+
+  return transformed;
 }
