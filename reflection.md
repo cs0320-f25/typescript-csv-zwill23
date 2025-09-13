@@ -1,0 +1,8 @@
+- #### 1. Correctness
+    A CSV parser is correct if it turns the raw text into structured rows and columns without losing or inventing data. It should handle edge cases like quoted fields, commas inside quotes, and empty values while keeping the right number of columns across rows. When the input isn't valid, it should fail clearly and send a helpful error message.
+
+- #### 2. Random, On-Demand Generation
+    If I had a function that could generate random CSV files, I’d use it to push my parser beyond the simple cases I might come up with on my own. It would throw all sorts of odd situations at me—like messy quotes, random commas, or missing values—and I could see if the parser still held up. I’d also check that it always behaved consistently, either parsing things cleanly or failing in a clear way.
+
+- #### 3. Overall experience, Bugs encountered and resolved
+    This sprint felt different from prior programming assignments because instead of just writing code to handle fixed examples, I had to think about edge cases and use tools like Zod to validate input. What surprised me was how much subtlety there is in CSV parsing and schema validation. For example, I had to think about handling empty fields or headers or commas within a field. I didn’t really hit any major bugs, mostly because I leaned heavily on incremental testing: I validated small parts to make srue they were working as I intended before moving on.
