@@ -68,6 +68,7 @@
 
 
 ### 1340 Supplement
+    For my supplemental challenge, I picked a linked list as the data structure. In JSON, I can represent it as a series of nodes, where each node has an id, a value, and a pointer to the next node (or nothing if it’s the end). Using Zod, I can check that the list is set up correctly.
 
 - #### 1. Correctness
     A CSV parser is correct if it turns the raw text into structured rows and columns without losing or inventing data. It should handle edge cases like quoted fields, commas inside quotes, and empty values while keeping the right number of columns across rows. When the input isn't valid, it should fail clearly and send a helpful error message.
