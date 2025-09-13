@@ -69,7 +69,7 @@ export async function parseCSVZod<T>(path: string, schema?: z.ZodType<T>): Promi
   });
 
   if (errors.length) {
-    throw new Error(`CSV schema validation failed`);
+    throw new Error(`CSV schema validation failed:\n${errors.join("\n")}`);
   }
 
   return transformed;
